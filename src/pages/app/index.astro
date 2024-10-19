@@ -1,21 +1,35 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Title from './components/Title.astro';
+import Container from './components/Container.astro';
+import Input from './components/Input.astro';
+
+let isInputMode = false;
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-        
+	<main class="grid grid-cols-2">
+        <Container>
+            <Title text="Pros" />
+            <Input />
+        </Container>
+        <Container>
+            <Title text="Cons" />
+            <Input />
+        </Container>
 	</main>
 </Layout>
 
 <style>
 	main {
+        height: 100%;
 		margin: auto;
 		padding: 1rem;
-		width: 800px;
+		width: 1200px;
 		max-width: calc(100% - 2rem);
 		color: white;
 		font-size: 20px;
 		line-height: 1.6;
+        max-height: 80%;
 	}
 </style>
