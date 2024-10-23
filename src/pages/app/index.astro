@@ -1,22 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Title from './components/Title.astro';
-import Container from './components/Container.astro';
 import Input from './components/Input.astro';
-
-let isInputMode = false;
+import List from './components/List.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="grid grid-cols-2">
-        <Container>
-            <Title text="Pros" />
-            <Input />
-        </Container>
-        <Container>
-            <Title text="Cons" />
-            <Input />
-        </Container>
+	<main>
+        <div class="flex items-center justify-center flex-col mb-24">
+            <h2 class="text-black font-bold text-center block" id="title">
+                Enter what you compare <span class="block">(e.g. Is worth to buy a new car?)</span>
+            </h2>
+            <Input class="hidden" id="title_input" />
+        </div>
+        <div class="grid grid-cols-2">
+            <List
+                container_id="add_pro",
+                container_title="Pros",
+                container_btn_text="Add Pro"
+            />
+            <List
+                container_id="add_cons",
+                container_title="Cons",
+                container_btn_text="Add Cons"
+            />
+        </div>
 	</main>
 </Layout>
 
@@ -33,3 +40,49 @@ let isInputMode = false;
         max-height: 80%;
 	}
 </style>
+
+<script>
+    let titleValue = '';
+    const title = document.getElementById('title');
+    const input = document.getElementById('title_input');
+
+    const toggleInput = () => {
+        input?.classList.toggle('hidden');
+        title?.classList.toggle('hidden');
+    }
+
+    title?.addEventListener('click', toggleInput);
+
+
+
+    const onBlur = () => {
+        toggleInput();
+
+        title!.innerText = titleValue;
+    }
+
+    let enterPressed = false;
+
+    input?.addEventListener('blur', () => {
+        if (!enterPressed) {
+            onBlur();
+        }
+
+        enterPressed = false;
+    });
+
+    input?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            enterPressed = true;
+            onBlur();
+        }
+    });
+
+
+
+    input?.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+
+        titleValue = target.value;
+    });
+</script>

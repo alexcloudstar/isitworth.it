@@ -1,0 +1,28 @@
+---
+import Container from "./Container.astro"
+import Title from "./Title.astro"
+import Button from "./Button.astro"
+import Input from "./Input.astro"
+
+const { container_id, container_title, container_btn_text } = Astro.props
+---
+
+<Container>
+    <Title text={container_title} />
+    <Button id={container_id} text={container_btn_text} />
+    <Input class="hidden" />
+</Container>
+
+<script define:vars={{
+    container_id,
+    container_title,
+    container_btn_text
+}}>
+
+console.log({
+    container_id,
+    container_title,
+    container_btn_text
+})
+    
+</script>
