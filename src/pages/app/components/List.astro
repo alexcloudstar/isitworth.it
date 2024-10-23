@@ -5,24 +5,51 @@ import Button from "./Button.astro"
 import Input from "./Input.astro"
 
 const { container_id, container_title, container_btn_text } = Astro.props
+let list: any[] = []
 ---
 
 <Container>
     <Title text={container_title} />
     <Button id={container_id} text={container_btn_text} />
-    <Input class="hidden" />
+    <Input class="hidden" id={`${container_id}_input`} name={container_id} />
+    <ul id={`${container_id}_list`}>
+    </ul>
+        
 </Container>
+
+<style>
+    ul {
+        list-style-type: none;
+        padding: 0;
+        color: #000;
+    }
+</style>
 
 <script define:vars={{
     container_id,
     container_title,
-    container_btn_text
+    container_btn_text,
+    list
 }}>
 
-console.log({
-    container_id,
-    container_title,
-    container_btn_text
-})
-    
+const button = document.getElementById(container_id)
+const input = document.getElementById(`${container_id}_input`)
+const listElement = document.getElementById(`${container_id}_list`)
+
+button.addEventListener('click', () => {
+    input.classList.toggle('hidden')
+    button.classList.toggle('hidden')
+    input.focus();
+});
+
+input.addEventListener('blur', (e) => {
+    input.classList.toggle('hidden')
+    button.classList.toggle('hidden')
+
+    list.push(e.target.value)
+    listElement.innerHTML = list.map((item) => `<li>${item}</li>`).join('')
+
+    e.target.value = ''
+});
+
 </script>
