@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Input from './components/Input.astro';
 import List from './components/List.astro';
+import Analysis from './components/Analysis.astro';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -14,7 +15,7 @@ import List from './components/List.astro';
         </div>
         <div class="grid grid-cols-2">
             <List
-                container_id="add_pro",
+                container_id="add_pros",
                 container_title="Pros",
                 container_btn_text="Add Pro"
             />
@@ -24,6 +25,7 @@ import List from './components/List.astro';
                 container_btn_text="Add Cons"
             />
         </div>
+        <Analysis />
 	</main>
 </Layout>
 
@@ -53,8 +55,6 @@ import List from './components/List.astro';
 
     title?.addEventListener('click', toggleInput);
 
-
-
     const onBlur = () => {
         toggleInput();
 
@@ -77,8 +77,6 @@ import List from './components/List.astro';
             onBlur();
         }
     });
-
-
 
     input?.addEventListener('input', (e) => {
         const target = e.target as HTMLInputElement;

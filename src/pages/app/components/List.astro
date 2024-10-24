@@ -5,14 +5,20 @@ import Button from "./Button.astro"
 import Input from "./Input.astro"
 
 const { container_id, container_title, container_btn_text } = Astro.props
-let list: any[] = []
----
 
+type TList = {
+    id: string;
+    title: string;
+    type: 'pro' | 'cons';
+}
+
+let list: TList[] = []
+---
 <Container>
-    <Title text={container_title} />
+    <Title text={container_title} id={`title_${container_id}`} />
     <Button id={container_id} text={container_btn_text} />
     <Input class="hidden" id={`${container_id}_input`} name={container_id} />
-    <ul id={`${container_id}_list`}>
+    <ul id={`${container_id}_list`} class="flex flex-col items-center justify-center mt-5 gap-4">
     </ul>
         
 </Container>
@@ -25,17 +31,18 @@ let list: any[] = []
     }
 </style>
 
-<script define:vars={{
+<script is:inline define:vars={{
     container_id,
     container_title,
     container_btn_text,
-    list
+    list,
 }}>
 
 const button = document.getElementById(container_id)
 const input = document.getElementById(`${container_id}_input`)
 const listElement = document.getElementById(`${container_id}_list`)
-
+const titleElement = document.getElementById(`title_${container_id}`)
+const type = container_id.split('_')[1]
 button.addEventListener('click', () => {
     input.classList.toggle('hidden')
     button.classList.toggle('hidden')
@@ -46,10 +53,20 @@ input.addEventListener('blur', (e) => {
     input.classList.toggle('hidden')
     button.classList.toggle('hidden')
 
-    list.push(e.target.value)
-    listElement.innerHTML = list.map((item) => `<li>${item}</li>`).join('')
+    list.push({
+        id: Math.random().toString(36).substring(2, 9),
+        title: e.target.value,
+        type
+    })
+
+    listElement.innerHTML = list.map(item => `
+        <li class="capitalize font-bold text-2xl">${item.title}</li>
+    `
+    ).join('')
 
     e.target.value = ''
+
+    titleElement.innerText = `${container_title} (${list.length})`
 });
 
 </script>
