@@ -1,0 +1,5 @@
+---
+const { class: className, id, text = 'Toggle Input' } = Astro.props
+
+---
+<button class:list={["bg-primary border border-white px-2 py-1 rounded-md text-lg hover:bg-primary/90 hover:-translate-y-1 hover:scale-110 transition ease-in-out delay-150", className]} id={id}>{text}</button>
