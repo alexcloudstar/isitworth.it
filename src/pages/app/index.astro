@@ -3,84 +3,109 @@ import Layout from '../../layouts/Layout.astro';
 import Input from './components/Input.astro';
 import List from './components/List.astro';
 import Analysis from './components/Analysis.astro';
+
+export type TList<T> = {
+  id: string;
+  title: string;
+  type: T;
+};
+
+export enum EListType {
+  PROS = 'pros',
+  CONS = 'cons',
+}
+
+const list: TList<EListType.PROS | EListType.CONS>[] = [];
+const pros: TList<EListType.PROS>[] = [];
+const cons: TList<EListType.CONS>[] = [];
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-        <div class="flex items-center justify-center flex-col mb-24">
-            <h2 class="text-black font-bold text-center block" id="title">
-                Enter what you compare <span class="block">(e.g. Is worth to buy a new car?)</span>
-            </h2>
-            <Input class="hidden" id="title_input" />
-        </div>
-        <div class="grid grid-cols-2">
-            <List
-                container_id="add_pros",
-                container_title="Pros",
-                container_btn_text="Add Pro"
-            />
-            <List
-                container_id="add_cons",
-                container_title="Cons",
-                container_btn_text="Add Cons"
-            />
-        </div>
-        <Analysis />
-	</main>
+<Layout title='Welcome to Astro.'>
+  <main>
+    <div class='flex items-center justify-center flex-col mb-24'>
+      <h2 class='text-black font-bold text-center block' id='title'>
+        Enter what you compare <span class='block'
+          >(e.g. Is worth to buy a new car?)</span
+        >
+      </h2>
+      <Input class='hidden' id='title_input' />
+    </div>
+    <div class='grid grid-cols-2 overflow-y-auto h-auto max-h-[80%]'>
+      <List
+        container_id='add_pros'
+        container_title='Pros'
+        container_btn_text='Add Pro'
+        list={list}
+        pros={pros}
+      />
+      <List
+        container_id='add_cons'
+        container_title='Cons'
+        container_btn_text='Add Cons'
+        list={list}
+        cons={cons}
+      />
+    </div>
+    <Analysis />
+  </main>
 </Layout>
 
 <style>
-	main {
-        height: 100%;
-		margin: auto;
-		padding: 1rem;
-		width: 1200px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-        max-height: 80%;
-	}
+  body {
+    overflow: hidden;
+  }
+
+  main {
+    height: 100%;
+    margin: auto;
+    padding: 1rem;
+    width: 1200px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    max-height: 80%;
+  }
 </style>
 
 <script>
-    let titleValue = '';
-    const title = document.getElementById('title');
-    const input = document.getElementById('title_input');
+  let titleValue = '';
+  const title = document.getElementById('title');
+  const input = document.getElementById('title_input');
 
-    const toggleInput = () => {
-        input?.classList.toggle('hidden');
-        title?.classList.toggle('hidden');
+  const toggleInput = () => {
+    input?.classList.toggle('hidden');
+    title?.classList.toggle('hidden');
+  };
+
+  title?.addEventListener('click', toggleInput);
+
+  const onBlur = () => {
+    toggleInput();
+
+    title!.innerText = titleValue;
+  };
+
+  let enterPressed = false;
+
+  input?.addEventListener('blur', () => {
+    if (!enterPressed) {
+      onBlur();
     }
 
-    title?.addEventListener('click', toggleInput);
+    enterPressed = false;
+  });
 
-    const onBlur = () => {
-        toggleInput();
-
-        title!.innerText = titleValue;
+  input?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      enterPressed = true;
+      onBlur();
     }
+  });
 
-    let enterPressed = false;
+  input?.addEventListener('input', e => {
+    const target = e.target as HTMLInputElement;
 
-    input?.addEventListener('blur', () => {
-        if (!enterPressed) {
-            onBlur();
-        }
-
-        enterPressed = false;
-    });
-
-    input?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            enterPressed = true;
-            onBlur();
-        }
-    });
-
-    input?.addEventListener('input', (e) => {
-        const target = e.target as HTMLInputElement;
-
-        titleValue = target.value;
-    });
+    titleValue = target.value;
+  });
 </script>

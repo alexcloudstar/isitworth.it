@@ -1,3 +1,57 @@
-<div class="flex flex-col items-center justify-center gap-5 text-primary font-bold text-3xl mt-20" id='worth_percentage_container'>
-    <h1 id="something">Worth percentage: 0%</h1>
+---
+import type { EListType, TList } from '../index.astro';
+
+const { pros, cons } = Astro.props;
+
+function calculateWorthPercentage(
+  pros: TList<EListType.PROS>[],
+  cons: TList<EListType.CONS>[]
+) {
+  const totalItems = pros?.length + cons?.length;
+  if (totalItems === 0) return 0;
+  return (pros?.length / totalItems) * 100;
+}
+
+let worthPercentage = calculateWorthPercentage(pros, cons);
+---
+
+<div
+  class='flex flex-col items-center justify-center gap-5 text-primary font-bold text-3xl mt-20'
+  id='worth_percentage_container'
+>
+    <h1 id='worth_percentage'>Worth percentage: {worthPercentage ? worthPercentage : 0}%</h1>
 </div>
+
+<script>
+  document.addEventListener('itemAdded', ((
+    event: CustomEvent<{ newItem: any; type: string }>
+  ) => {
+    const { newItem, type } = event.detail;
+
+    const pros = JSON.parse(
+      document.getElementById('pros_data')?.textContent || '[]'
+    );
+    const cons = JSON.parse(
+      document.getElementById('cons_data')?.textContent || '[]'
+    );
+
+    if (type === 'pros') {
+      pros.push(newItem);
+    } else if (type === 'cons') {
+      cons.push(newItem);
+    }
+
+    const totalItems = pros.length + cons.length;
+    const worthPercentage =
+      totalItems === 0 ? 0 : (pros.length / totalItems) * 100;
+
+    document.getElementById('worth_percentage')!.innerText =
+      `Worth percentage: ${worthPercentage.toFixed(2)}%`;
+    document.getElementById('pros_data')!.textContent = JSON.stringify(pros);
+    document.getElementById('cons_data')!.textContent = JSON.stringify(cons);
+  }) as EventListener);
+</script>
+
+<!-- Hidden elements to store pros and cons data -->
+<div id='pros_data' style='display: none;'>{JSON.stringify(pros)}</div>
+<div id='cons_data' style='display: none;'>{JSON.stringify(cons)}</div>
