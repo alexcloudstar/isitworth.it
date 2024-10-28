@@ -1,4 +1,6 @@
 ---
+import Nav from '../components/Nav.astro';
+
 interface Props {
 	title: string;
 }
@@ -16,7 +18,8 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="py-8">
+        <Nav />
 		<slot />
 	</body>
 </html>
@@ -32,6 +35,7 @@ const { title } = Astro.props;
 			white 60%
 		);
 	}
+
 	html {
 		font-family: system-ui, sans-serif;
         /*background: #13151a;*/

@@ -1,0 +1,22 @@
+---
+const itemClass = "text-primary px-5 py-2 rounded-lg transition ease-in-out delay-150 hover:bg-primary hover:text-white duration-300 cursor-pointer"
+---
+
+<nav class="flex justify-around">
+    <h1 class="text-lg font-bold">Is it worth it?</h1>
+    <ul class="flex items-center gap-10">
+        <li
+        ><a 
+                class={itemClass}
+            href="/">Home</a></li>
+        <li
+        ><a
+                class={itemClass}
+                href="/about">About</a></li>
+        <li
+            class="border-none"
+        ><a 
+            class="bg-primary text-white px-5 py-2 rounded-lg tracking-wider border-2 border-primary hover:bg-white hover:text-primary transition ease-in-out delay-150 duration-300 cursor-pointer"
+            href="/app">App</a></li>
+    </ul>
+</nav>
