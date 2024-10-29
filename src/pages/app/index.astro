@@ -22,7 +22,7 @@ const cons: TList<EListType.CONS>[] = [];
 
 <Layout title="Welcome to Astro.">
   <main>
-    <div class="flex items-center justify-center flex-col mb-24">
+    <div class="flex items-center justify-center flex-col mb-24 animate__animated animate__backInDown">
       <h2 class="text-black font-bold text-center block" id="title">
         Enter what you compare <span class="block"
           >(e.g. Is worth to buy a new car?)</span
@@ -30,6 +30,7 @@ const cons: TList<EListType.CONS>[] = [];
       </h2>
       <Input class="hidden" id="title_input" />
     </div>
+        <div class="animate__animated animate__fadeInUp">
     <div class="grid grid-cols-2 overflow-y-auto h-auto max-h-[80%]">
       <List
         container_id="add_pros"
@@ -47,6 +48,7 @@ const cons: TList<EListType.CONS>[] = [];
       />
     </div>
     <Analysis />
+        </div>
   </main>
 </Layout>
 
