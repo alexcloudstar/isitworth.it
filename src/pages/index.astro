@@ -1,19 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
-import demoImage from '../assets/isitworthitlp.png';
+import demoImage from "../assets/isitworthitlp.png";
 ---
 
 <Layout title="Welcome to Astro.">
   <main class="pt-24">
-        <div class="leading-10">
-            <h2 class="text-2xl font-medium">Welcome to <u>is it worth it</u></h2>
-            <p>
-                This is a simple website that helps you decide if a decision is worth it or not.
-            </p>
-        </div>
-        <Image src={demoImage} alt="Decide" class="size-[900px] object-none mt-10" />
+    <div class="leading-10">
+      <h2 class="text-2xl font-medium">Welcome to <u>is it worth it</u></h2>
+      <p>
+        This is a simple website that helps you decide if a decision is worth it
+        or not.
+      </p>
+    </div>
+    <Image
+      src={demoImage}
+      alt="Decide"
+      class="size-[900px] object-none mt-10"
+    />
   </main>
 </Layout>
 
