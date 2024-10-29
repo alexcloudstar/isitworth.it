@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Input from './components/Input.astro';
-import List from './components/List.astro';
-import Analysis from './components/Analysis.astro';
+import Layout from "../../layouts/Layout.astro";
+import Input from "./components/Input.astro";
+import List from "./components/List.astro";
+import Analysis from "./components/Analysis.astro";
 
 export type TList<T> = {
   id: string;
@@ -11,8 +11,8 @@ export type TList<T> = {
 };
 
 export enum EListType {
-  PROS = 'pros',
-  CONS = 'cons',
+  PROS = "pros",
+  CONS = "cons",
 }
 
 const list: TList<EListType.PROS | EListType.CONS>[] = [];
@@ -20,28 +20,28 @@ const pros: TList<EListType.PROS>[] = [];
 const cons: TList<EListType.CONS>[] = [];
 ---
 
-<Layout title='Welcome to Astro.'>
+<Layout title="Welcome to Astro.">
   <main>
-    <div class='flex items-center justify-center flex-col mb-24'>
-      <h2 class='text-black font-bold text-center block' id='title'>
-        Enter what you compare <span class='block'
+    <div class="flex items-center justify-center flex-col mb-24">
+      <h2 class="text-black font-bold text-center block" id="title">
+        Enter what you compare <span class="block"
           >(e.g. Is worth to buy a new car?)</span
         >
       </h2>
-      <Input class='hidden' id='title_input' />
+      <Input class="hidden" id="title_input" />
     </div>
-    <div class='grid grid-cols-2 overflow-y-auto h-auto max-h-[80%]'>
+    <div class="grid grid-cols-2 overflow-y-auto h-auto max-h-[80%]">
       <List
-        container_id='add_pros'
-        container_title='Pros'
-        container_btn_text='Add Pro'
+        container_id="add_pros"
+        container_title="Pros"
+        container_btn_text="Add Pro"
         list={list}
         pros={pros}
       />
       <List
-        container_id='add_cons'
-        container_title='Cons'
-        container_btn_text='Add Cons'
+        container_id="add_cons"
+        container_title="Cons"
+        container_btn_text="Add Cons"
         list={list}
         cons={cons}
       />
@@ -69,16 +69,16 @@ const cons: TList<EListType.CONS>[] = [];
 </style>
 
 <script>
-  let titleValue = '';
-  const title = document.getElementById('title');
-  const input = document.getElementById('title_input');
+  let titleValue = "";
+  const title = document.getElementById("title");
+  const input = document.getElementById("title_input");
 
   const toggleInput = () => {
-    input?.classList.toggle('hidden');
-    title?.classList.toggle('hidden');
+    input?.classList.toggle("hidden");
+    title?.classList.toggle("hidden");
   };
 
-  title?.addEventListener('click', toggleInput);
+  title?.addEventListener("click", toggleInput);
 
   const onBlur = () => {
     toggleInput();
@@ -88,7 +88,7 @@ const cons: TList<EListType.CONS>[] = [];
 
   let enterPressed = false;
 
-  input?.addEventListener('blur', () => {
+  input?.addEventListener("blur", () => {
     if (!enterPressed) {
       onBlur();
     }
@@ -96,14 +96,14 @@ const cons: TList<EListType.CONS>[] = [];
     enterPressed = false;
   });
 
-  input?.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
+  input?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
       enterPressed = true;
       onBlur();
     }
   });
 
-  input?.addEventListener('input', e => {
+  input?.addEventListener("input", (e) => {
     const target = e.target as HTMLInputElement;
 
     titleValue = target.value;

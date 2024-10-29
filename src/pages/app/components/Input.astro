@@ -1,6 +1,12 @@
 ---
-const { class: className, id, placeholder = "Type something" } = Astro.props
+const { class: className, id, placeholder = "Type something" } = Astro.props;
 ---
 
-<input class:list={['bg-transparent border-2 border-primary rounded-md text-primary outline-0 px-2 py-1 w-fit mx-auto', className]} id={id} placeholder={placeholder} />
-
+<input
+  class:list={[
+    "bg-transparent border-2 border-primary rounded-md text-primary outline-0 px-2 py-1 w-fit mx-auto",
+    className,
+  ]}
+  id={id}
+  placeholder={placeholder}
+/>
