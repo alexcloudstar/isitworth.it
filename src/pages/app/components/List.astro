@@ -1,8 +1,8 @@
 ---
-import Container from './Container.astro';
-import Title from './Title.astro';
-import Button from './Button.astro';
-import Input from './Input.astro';
+import Container from "./Container.astro";
+import Title from "./Title.astro";
+import Button from "./Button.astro";
+import Input from "./Input.astro";
 
 const { container_id, container_title, container_btn_text, pros, cons, list } =
   Astro.props;
@@ -11,10 +11,10 @@ const { container_id, container_title, container_btn_text, pros, cons, list } =
 <Container>
   <Title text={container_title} id={`title_${container_id}`} />
   <Button id={container_id} text={container_btn_text} />
-  <Input class='hidden' id={`${container_id}_input`} name={container_id} />
+  <Input class="hidden" id={`${container_id}_input`} name={container_id} />
   <ul
     id={`${container_id}_list`}
-    class='flex flex-col items-center justify-center mt-5 gap-4'
+    class="flex flex-col items-center justify-center mt-5 gap-4"
   >
   </ul>
 </Container>
@@ -42,16 +42,16 @@ const { container_id, container_title, container_btn_text, pros, cons, list } =
   const input = document.getElementById(`${container_id}_input`);
   const listElement = document.getElementById(`${container_id}_list`);
   const titleElement = document.getElementById(`title_${container_id}`);
-  const type = container_id.split('_')[1];
-  button.addEventListener('click', () => {
-    input.classList.toggle('hidden');
-    button.classList.toggle('hidden');
+  const type = container_id.split("_")[1];
+  button.addEventListener("click", () => {
+    input.classList.toggle("hidden");
+    button.classList.toggle("hidden");
     input.focus();
   });
 
-  input.addEventListener('blur', e => {
-    input.classList.toggle('hidden');
-    button.classList.toggle('hidden');
+  input.addEventListener("blur", (e) => {
+    input.classList.toggle("hidden");
+    button.classList.toggle("hidden");
 
     if (!e.target.value) return;
 
@@ -65,17 +65,17 @@ const { container_id, container_title, container_btn_text, pros, cons, list } =
 
     listElement.innerHTML = list
       .map(
-        item => `
+        (item) => `
         <li class="capitalize font-bold text-2xl">${item.title}</li>
-    `
+    `,
       )
-      .join('');
+      .join("");
 
-    e.target.value = '';
+    e.target.value = "";
 
     titleElement.innerText = `${container_title} (${list.length})`;
 
-    const event = new CustomEvent('itemAdded', { detail: { newItem, type } });
+    const event = new CustomEvent("itemAdded", { detail: { newItem, type } });
     document.dispatchEvent(event);
   });
 </script>
