@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
 import demoImage from "../assets/isitworthitlp.png";
+import demoVideo from "../assets/demo.mp4";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -18,11 +19,12 @@ import demoImage from "../assets/isitworthitlp.png";
         or not.
       </p>
     </div>
-    <Image
-      src={demoImage}
-      alt="Decide"
-      class="size-[900px] object-none mt-10 animate__animated animate__slideInUp"
-    />
+    <div class="mt-20">
+      <video controls muted class="border-2 rounded-lg p-0.5">
+        <source src={demoVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </main>
 </Layout>
 
