@@ -1,6 +1,8 @@
 {
   "name": "isitworth-it",
+  "author": "Alex Cloudstar alexcloudstar@gmail.com (https://www.alexcloudstar.com)",
   "type": "module",
+  "license": "MIT",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
