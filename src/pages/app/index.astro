@@ -21,7 +21,7 @@ const cons: TList<EListType.CONS>[] = [];
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
+  <main class="pt-20">
     <div
       class="flex items-center justify-center flex-col mb-24 animate__animated animate__backInDown"
     >
@@ -65,7 +65,6 @@ const cons: TList<EListType.CONS>[] = [];
   main {
     height: 100%;
     margin: auto;
-    padding: 1rem;
     width: 1200px;
     max-width: calc(100% - 2rem);
     color: white;
@@ -83,12 +82,18 @@ const cons: TList<EListType.CONS>[] = [];
   const toggleInput = () => {
     input?.classList.toggle("hidden");
     title?.classList.toggle("hidden");
+
+      input?.focus();
   };
 
   title?.addEventListener("click", toggleInput);
 
   const onBlur = () => {
     toggleInput();
+
+      if (titleValue === "") {
+          titleValue = "Enter what you compare";
+      }
 
     title!.innerText = titleValue;
   };
