@@ -6,57 +6,47 @@ import sun from "../assets/sun.svg";
 ---
 
 <button id="dark-mode">
-    <Image
-      src={moon}
-      alt="Decide"
-        id="dark-mode--icon--moon"
-    />
-    <Image
-      src={sun}
-      alt="Decide"
-        id="dark-mode--icon--sun"
-        class="hidden"
-    />
+  <Image src={moon} alt="Decide" id="dark-mode--icon--moon" />
+  <Image src={sun} alt="Decide" id="dark-mode--icon--sun" class="hidden" />
 </button>
 
-
 <script>
-const iconMoon = document.getElementById('dark-mode--icon--moon');
-const iconSun = document.getElementById('dark-mode--icon--sun');
+  const iconMoon = document.getElementById("dark-mode--icon--moon");
+  const iconSun = document.getElementById("dark-mode--icon--sun");
 
-    function checkTheme(): boolean {
-        if (localStorage.getItem('theme') === 'dark') return true;
+  function checkTheme(): boolean {
+    if (localStorage.getItem("theme") === "dark") return true;
 
-        return false;
+    return false;
+  }
+
+  function toggleTheme() {
+    document.documentElement.classList.toggle("dark");
+
+    if (checkTheme()) {
+      localStorage.setItem("theme", "light");
+      iconMoon?.classList.remove("hidden");
+      iconSun?.classList.add("hidden");
+      return;
     }
 
-    function toggleTheme() {
-        document.documentElement.classList.toggle('dark');
+    iconMoon?.classList.add("hidden");
+    iconSun?.classList.remove("hidden");
 
-        if(checkTheme()) {
-            localStorage.setItem('theme', 'light');
-            iconMoon?.classList.remove('hidden');
-            iconSun?.classList.add('hidden');
-            return;
-        }
+    localStorage.setItem("theme", "dark");
+  }
 
-        iconMoon?.classList.add('hidden');
-        iconSun?.classList.remove('hidden');
+  document.getElementById("dark-mode")?.addEventListener("click", toggleTheme);
 
-        localStorage.setItem('theme', 'dark');
+  document.addEventListener("DOMContentLoaded", () => {
+    if (checkTheme()) {
+      document.documentElement.classList.add("dark");
+      iconMoon?.classList.add("hidden");
+      iconSun?.classList.remove("hidden");
+      return;
     }
 
-    document.getElementById('dark-mode')?.addEventListener('click', toggleTheme)
-
-    document.addEventListener('DOMContentLoaded', () => {
-        if(checkTheme()) {
-            document.documentElement.classList.add('dark');
-            iconMoon?.classList.add('hidden');
-            iconSun?.classList.remove('hidden');
-            return;
-        }
-    
-            iconMoon?.classList.remove('hidden');
-            iconSun?.classList.add('hidden');
-});
+    iconMoon?.classList.remove("hidden");
+    iconSun?.classList.add("hidden");
+  });
 </script>

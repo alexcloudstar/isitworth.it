@@ -1,12 +1,14 @@
 ---
-import DarkMode from './DarkMode.astro';
+import DarkMode from "./DarkMode.astro";
 
 const itemClass =
-    "text-primary px-5 py-2 rounded-lg transition ease-in-out delay-150 hover:bg-primary hover:text-white duration-300 cursor-pointer dark:text-light";
+  "text-primary px-5 py-2 rounded-lg transition ease-in-out delay-150 hover:bg-primary hover:text-white duration-300 cursor-pointer dark:text-light";
 ---
 
 <nav class="flex justify-around animate__animated animate__slideInDown">
-  <a href="/" class="dark:text-light"><h1 class="text-lg font-bold">Is it worth it?</h1></a>
+  <a href="/" class="dark:text-light"
+    ><h1 class="text-lg font-bold">Is it worth it?</h1></a
+  >
   <ul class="flex items-center gap-10">
     <li><a class={itemClass} href="/">Home</a></li>
     <li><a class={itemClass} href="/about">About</a></li>
@@ -17,6 +19,5 @@ const itemClass =
       >
     </li>
   </ul>
-    <DarkMode />
+  <DarkMode />
 </nav>
-
