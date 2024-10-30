@@ -1,0 +1,81 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "./components/Container.astro";
+---
+
+<Layout title="About">
+  <main class="pt-20">
+    <div class="text-primary flex flex-col gap-5">
+      <h2 class="text-3xl font-bold mb-3">About</h2>
+      <Container>
+        <h3 class="text-2xl font-bold">Motivation</h3>
+        <p class="leading-8 mb-3">
+          I've often found myself needing to weigh the pros and cons of various
+          choices, whether it’s evaluating a new technology, making a purchase,
+          or other important decisions. Each time, I had to manually list the
+          advantages and drawbacks to assess them effectively. To streamline
+          this process, I decided to build a tool that makes it easier to
+          compare options and make informed decisions. This tool offers a clear,
+          organized way to outline, compare, and analyze the key factors of any
+          choice—turning decision-making into a more efficient and insightful
+          process.
+        </p>
+      </Container>
+      <Container>
+        <h4 class="text-xl font-bold">How to Use</h4>
+        <p class="leading-8">
+          To get started, click the “App” button on the navigation. You can then
+          add the options you want to compare and the factors you want to
+          evaluate. For each factor, you can assign a weight to indicate its
+          importance. After entering all the necessary information, the tool
+          will calculate the total score for each option based on the factors
+          and their weights. This will help you visualize the differences
+          between the options and make a more informed decision.
+        </p>
+      </Container>
+      <Container>
+        <h5 class="text-xl font-bold">Roadmap:</h5>
+        <ul class="list-disc pl-10">
+          <li>Accounts</li>
+          <li>Sharing</li>
+          <li>Exporting</li>
+          <li>Importing</li>
+          <li>Customization</li>
+          <li>More options</li>
+          <li>More factors</li>
+          <li>More visualizations</li>
+          <li>More languages</li>
+          <li>More comparisons (now is limited to 1)</li>
+          <li>History</li>
+        </ul>
+      </Container>
+      <Container>
+        <h6 class="text-lg font-bold">Credits:</h6>
+        <p>
+          Made by <a
+            href="https://www.alexcloudstar.com"
+            target="_blank"
+            class="underline">Alex Cloudstar</a
+          >
+        </p>
+      </Container>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  body {
+    overflow: hidden;
+  }
+
+  main {
+    height: 100%;
+    margin: auto;
+    width: 1200px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    max-height: 80%;
+  }
+</style>

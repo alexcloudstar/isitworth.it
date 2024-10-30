@@ -2,10 +2,14 @@
 import Nav from "../components/Nav.astro";
 
 interface Props {
-  title: string;
+  title?: string;
 }
 
 const { title } = Astro.props;
+
+const constructedTitle = title
+  ? `${title} | Is it worth it? `
+  : "Is it worth it?";
 ---
 
 <!doctype html>
@@ -19,12 +23,8 @@ const { title } = Astro.props;
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{constructedTitle}</title>
   </head>
   <body class="py-8 dark:bg-dark">
     <Nav />
