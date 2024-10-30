@@ -83,7 +83,7 @@ const cons: TList<EListType.CONS>[] = [];
     input?.classList.toggle("hidden");
     title?.classList.toggle("hidden");
 
-      input?.focus();
+    input?.focus();
   };
 
   title?.addEventListener("click", toggleInput);
@@ -91,9 +91,9 @@ const cons: TList<EListType.CONS>[] = [];
   const onBlur = () => {
     toggleInput();
 
-      if (titleValue === "") {
-          titleValue = "Enter what you compare";
-      }
+    if (titleValue === "") {
+      titleValue = "Enter what you compare";
+    }
 
     title!.innerText = titleValue;
   };
