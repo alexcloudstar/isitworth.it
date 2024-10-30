@@ -66,8 +66,14 @@ const constructedTitle = title
 <style is:global>
   html {
     font-family: system-ui, sans-serif;
-    overflow-y: hidden;
   }
+
+  @media (min-width: 1023px) {
+      html {
+          overflow-y: hidden;
+      }
+  }
+
   html,
   body {
     margin: 0;
