@@ -86,3 +86,23 @@ const constructedTitle = title
       monospace;
   }
 </style>
+
+<script>
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 1024) {
+        document.body.style.overflowY = 'scroll';
+    }
+
+    if (screenWidth < 1024) {
+        document.body.classList.add('mobile');
+        const mobileText = document.createElement('p');
+        mobileText.style.textAlign = 'center';
+        mobileText.style.padding = '20px';
+        mobileText.style.fontSize = '20px';
+        mobileText.style.fontWeight = 'bold';
+        mobileText.textContent = "Currently we don't offer mobile. For the best experience, please use a desktop device.";
+        document.body.innerHTML = mobileText.outerHTML;
+    }
+
+</script>
