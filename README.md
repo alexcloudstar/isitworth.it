@@ -1,20 +1,20 @@
-# Astro Starter Kit: Basics
+---
 
-```sh
-npm create astro@latest -- --template basics
-```
+# isitworth.it
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+isitworth.it is a web application built using Astro and JavaScript that helps users compare options and make informed decisions by weighing the pros and cons of various choices.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Motivation
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+I've often found myself needing to weigh the pros and cons of various choices, whether it’s evaluating a new technology, making a purchase, or other important decisions. Each time, I had to manually list the advantages and drawbacks to assess them effectively. To streamline this process, I decided to build a tool that makes it easier to compare options and make informed decisions. This tool offers a clear, organized way to outline, compare, and analyze the key factors of any choice—turning decision-making into a more efficient and insightful process.
 
-## 🚀 Project Structure
+## How to Use
 
-Inside of your Astro project, you'll see the following folders and files:
+To get started, click the “App” button on the navigation. You can then add the options you want to compare and the factors you want to evaluate. For each factor, you can assign a weight to indicate its importance. After entering all the necessary information, the tool will calculate the total score for each option based on the factors and their weights. This will help you visualize the differences between the options and make a more informed decision.
+
+## Project Structure
+
+Inside the project, you'll find the following folders and files:
 
 ```text
 /
@@ -30,13 +30,12 @@ Inside of your Astro project, you'll see the following folders and files:
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **public/**: Contains static assets like images.
+- **src/components/**: Contains Astro/React/Vue/Svelte/Preact components.
+- **src/layouts/**: Contains layout components.
+- **src/pages/**: Contains `.astro` or `.md` files, each exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -49,6 +48,23 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Technologies Used
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The following technologies and libraries are used in this project, as listed in the `package.json` file:
+
+### Dependencies
+- **@astrojs/check**: "^0.9.4"
+- **@astrojs/tailwind**: "^5.1.2"
+- **astro**: "^4.16.6"
+- **tailwindcss**: "^3.4.14"
+- **typescript**: "^5.6.3"
+
+### DevDependencies
+- **prettier**: "^3.3.3"
+- **prettier-plugin-astro**: "^0.14.1"
+
+## Want to Learn More about Astro?
+
+Feel free to check [our documentation](https://docs.astro.build) or join [Discord server](https://astro.build/chat).
+
+---

@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+
+import moon from "../assets/moon.svg";
+import sun from "../assets/sun.svg";
+---
+
+<button class="hidden md:block" id="dark-mode">
+  <Image src={moon} alt="Decide" id="dark-mode--icon--moon" />
+  <Image src={sun} alt="Decide" id="dark-mode--icon--sun" class="hidden" />
+</button>
+
+<script>
+  const iconMoon = document.getElementById("dark-mode--icon--moon");
+  const iconSun = document.getElementById("dark-mode--icon--sun");
+
+  function checkTheme(): boolean {
+    if (localStorage.getItem("theme") === "dark") return true;
+
+    return false;
+  }
+
+  function toggleTheme() {
+    document.documentElement.classList.toggle("dark");
+
+    if (checkTheme()) {
+      localStorage.setItem("theme", "light");
+      iconMoon?.classList.remove("hidden");
+      iconSun?.classList.add("hidden");
+      return;
+    }
+
+    iconMoon?.classList.add("hidden");
+    iconSun?.classList.remove("hidden");
+
+    localStorage.setItem("theme", "dark");
+  }
+
+  document.getElementById("dark-mode")?.addEventListener("click", toggleTheme);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (checkTheme()) {
+      document.documentElement.classList.add("dark");
+      iconMoon?.classList.add("hidden");
+      iconSun?.classList.remove("hidden");
+      return;
+    }
+
+    iconMoon?.classList.remove("hidden");
+    iconSun?.classList.add("hidden");
+  });
+</script>

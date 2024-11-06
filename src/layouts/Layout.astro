@@ -1,55 +1,117 @@
 ---
+import Analytics from "../components/Analytics.astro";
+import Nav from "../components/Nav.astro";
+
 interface Props {
-	title: string;
+  title?: string;
 }
 
 const { title } = Astro.props;
+
+const constructedTitle = title
+  ? `${title} | Is it worth it? `
+  : "Is it worth it?";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{constructedTitle}</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Analytics />
+    <meta
+      name="description"
+      content="Streamline decision-making with our pros and cons comparison tool. Quickly outline, compare, and analyze options based on weighted factors to make informed decisions efficiently."
+    />
+    <meta
+      name="keywords"
+      content="Decision-making tool, Pros and cons comparison, Compare options tool, Weighted decision tool, Decision support software"
+    />
+    <!-- Open Graph Tags for Social Sharing -->
+    <meta
+      property="og:title"
+      content="Decision-Making Tool: Efficiently Compare Options and Make Informed Choices"
+    />
+    <meta
+      property="og:description"
+      content="Make decision-making easier with our pros and cons comparison tool. Outline, compare, and analyze options based on key factors and their weights."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.isitworth.it/" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Decision-Making Tool: Efficiently Compare Options and Make Informed Choices"
+    />
+    <meta
+      name="twitter:description"
+      content="Streamline decision-making with our pros and cons comparison tool. Quickly outline, compare, and analyze options for better decisions."
+    />
+  </head>
+  <body class="py-8 dark:bg-dark">
+    <Nav />
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-        /*background: #13151a;*/
-	}
-    html,body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
+  html {
+    font-family: system-ui, sans-serif;
+  }
+
+  @media (min-width: 1023px) {
+    html {
+      overflow-y: hidden;
     }
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
 </style>
+
+<script>
+  /*
+  const screenWidth = window.innerWidth;
+
+  if (screenWidth < 1024) {
+    document.body.style.overflowY = "scroll";
+  }
+
+  if (screenWidth < 1024) {
+    document.body.classList.add("mobile");
+    const mobileText = document.createElement("p");
+    mobileText.style.textAlign = "center";
+    mobileText.style.padding = "20px";
+    mobileText.style.fontSize = "20px";
+    mobileText.style.fontWeight = "bold";
+    mobileText.textContent =
+      "Currently we don't offer mobile. For the best experience, please use a desktop device.";
+    document.body.innerHTML = mobileText.outerHTML;
+  }
+  */
+</script>
