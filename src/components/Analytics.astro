@@ -5,12 +5,16 @@
   src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_MEASURE_ID}`}
 ></script>
 
-<script is:inline>
+<script>
+// @ts-expect-error
   window.dataLayer = window.dataLayer || [];
   function gtag() {
+// @ts-expect-error
     dataLayer.push(arguments);
   }
+// @ts-expect-error
   gtag("js", new Date());
 
+// @ts-expect-error
   gtag("config", import.meta.env.PUBLIC_MEASURE_ID);
 </script>
