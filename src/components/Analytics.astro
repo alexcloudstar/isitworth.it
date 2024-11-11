@@ -2,8 +2,9 @@
 <script
   is:inline
   async
-  src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.MEASURE_ID}`}
+  src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_MEASURE_ID}`}
 ></script>
+
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
@@ -11,5 +12,5 @@
   }
   gtag("js", new Date());
 
-  gtag("config", import.meta.env.MEASURE_ID);
+  gtag("config", import.meta.env.PUBLIC_MEASURE_ID);
 </script>
